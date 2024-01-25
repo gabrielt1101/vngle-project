@@ -1,0 +1,112 @@
+
+body {
+    font-family: 'Roboto', sans-serif; /* Changed font to 'Roboto' */
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* Changed background color to black */
+    color: #000; /* Changed text color to white */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  border-radius: 10px; /* Rounded corners for container */
+}
+
+.welcome-message {
+text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #0000ff, #ff00ff, #ffcc00); /* Ombre background for welcome message with yellow */
+  color: #fff; /* Text color for welcome message */
+  padding: 10px; /* Padding to make the gradient visible */
+  border-radius: 10px; /* Rounded corners for welcome message */
+}
+
+.article {
+    border: 5px solid #ccc;
+    padding: 20px;
+    margin-bottom: 0px;
+    background-color: #fff; /* Changed background color to white */
+    color: #000; /* Changed text color to black */
+  border-radius: 10px; /* Rounded corners for container */
+}
+
+h2 {
+    color: #ff00ff; /* Neon green color for article titles */
+   border-radius: 10px; /* Rounded corners for container */
+}
+
+label {
+    color: #ff00ff; /* Neon green color for labels */
+   border-radius: 10px; /* Rounded corners for container */
+}
+
+input {
+    background-color: #fff; /* Darker background for input fields */
+    color: #000; /* Text color for input fields */
+   border-radius: 10px; /* Rounded corners for container */
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ff00ff; /* Neon pink color for buttons */
+    color: #fff; /* Text color for buttons */
+   border-radius: 10px; /* Rounded corners for container */
+}
+
+.verified {
+    background-color:#1AC0E9; /* blue color for verified button */
+    color: #fff;
+   border-radius: 10px; /* Rounded corners for container */
+}
+
+.unverified {
+    background-color: #EFDE10
+  ; /* Neon red color for unverified button */
+    color: #fff;
+   border-radius: 10px; /* Rounded corners for container */
+}
+
+.news-ticker {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+.green-ticker {
+    background-color: #00ff00; /* Neon green color for green ticker */
+}
+
+.red-ticker {
+    background-color: #ff0000; /* Neon red color for red ticker */
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; /* Changed background color to white */
+    color: #000; /* Changed text color to black */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+   border-radius: 10px; /* Rounded corners for container */
+}
+
+.popup button {
+    margin: 10px;
+    background-color: #EFDE10; /* Neon green color for popup buttons */
+    color: #000;
+   border-radius: 10px; /* Rounded corners for container */
+}

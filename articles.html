@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <img src="https://www.vngle.com/static/logo-998e4f26c672f6f06c081ab9bbc5e2fe.png" alt="Corner Image" style="position: fixed; top: 0; right: 0; width: 100px; height: auto; z-index: 3;">
+    <link rel="stylesheet" href="articles.css">
+    <title>Landing Page</title>
+    
+</head>
+<body>
+
+    <div class="container">
+        <div class="welcome-message">
+            <p>Articles & Coverage</p>
+        </div>
+    
+        <div class="buttons">
+            <button class="button" onclick="showArticle('article1')">News Coverage</button>
+            <button class="button" onclick="showArticle('article2')">News Article</button>
+        </div>
+    
+        <div id="article1" class="article" style="display: none;">
+            <h2>News Coverage</h2>
+            <div>
+                <label for="userName1">Your Name:</label>
+                <input type="text" id="userName1" placeholder="Enter your name">
+                <button class="button verified" onclick="showConfirmationPopup('article1', 'verified')">Verify</button>
+                <button class="button unverified" onclick="showConfirmationPopup('article1', 'unverified')" style="-webkit-text-fill-color: black;">Unverify</button>
+                <p>Percentage of users verified: <span id="verificationPercentage1">0%</span></p>
+                <p>Total users: <span id="totalUsers1">0</span></p>
+            </div>
+            <video width="300px" height="auto" controls>
+                <source src="video.mp4" type="video/mp4">
+                <source src="video.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+              </video>
+            <div id="newsTicker1" class="news-ticker"></div>
+        </div>
+    
+        <div id="article2" class="article" style="display: none;">
+            <h2>Governor Abbott signals potential defiance of Supreme Court’s border ruling</h2>
+            <div>
+                <label for="userName2">Your Name:</label>
+                <input type="text" id="userName2" placeholder="Enter your name">
+                <button class="button verified" onclick="showConfirmationPopup('article2', 'verified')">Verify</button>
+                <button class="button unverified" onclick="showConfirmationPopup('article2', 'unverified')" style="-webkit-text-fill-color: black;">Unverify</button>
+                <p>Percentage of users verified: <span id="verificationPercentage2">0%</span></p>
+                <p>Total users: <span id="totalUsers2">0</span></p>
+            </div>
+            <p>Several Texas Republican lawmakers, including three from the Houston area, have urged the state to defy the Supreme Court's order to let the Biden administration cut concertina wire Texas has strung out along the border. Governor Greg Abbott has responded by issuing what he described as a "Statement on Texas' Constitutional Right to Self-Defense," signaling what could be the beginning of a constitutional crisis.</p>
+            <p>State Representatives Tom Oliverson (Houston), Steve Toth (Conroe), and Briscoe Cain (Deer Park) attacked the high court’s decision on X.com. Cain quoted President Andrew Jackson, saying, "The Supreme Court has made their decision, now let's see them enforce it."</p>
+            <p>Governor Abbott then issued a statement asserting the state's constitutional right to protect itself, accusing the Biden administration once again of failing to protect the state from what Abbott characterizes as "an invasion" of undocumented immigrants.</p>
+            <p>Abbott has not yet indicated that he will defy the Supreme Court's order to allow federal agents to cut the concertina wire, but numerous reports have emerged that the state is continuing to deploy the wire.</p>
+            <p>"That's a real blow to our separation of powers and the way that this country has governed itself," said Charles "Rocky" Rhodes, who teaches constitutional law at South Texas College of Law Houston. "There have been situations in the past where governors and state officials have defied the Supreme Court, but that has led to constitutional crises."</p>
+            <p>Teddy Rave, a constitutional law expert at the University of Texas at Austin School of Law, described the initial calls to defy the high court's order as unconstitutional and dangerous.</p>
+            <p>"The last time that I'm aware of that this kind of defiance actually happened was resistance to desegregation orders," after Brown v. Board of Education, Rave said. "The Supreme Court didn't take it kindly and issued a unanimous decision in Cooper v. Aaron explaining that states need to follow its constitutional rulings."</p>
+            <p>As to the Biden administration's options if Texas defies the Supreme Court's ruling, "They can nationalize the Texas (National) Guard," Charles "Rocky" Rhodes said, "which is what happened in Arkansas, when the governor there tried to defy court orders to allow individuals who were Black to be able to attend white schools (in Little Rock in 1957)."</p>
+            <div id="newsTicker2" class="news-ticker"></div>
+        </div>
+    </div>
+    
+    <div id="confirmationPopup" class="popup">
+        <p>Are you sure you want to <span id="verificationAction"></span> this article?</p>
+        <button onclick="confirmVerification()">Yes, Confirm</button>
+        <button onclick="cancelVerification()">Cancel</button>
+    </div>
+    
+    <script>
+        function showArticle(articleId) {
+            // Hide all articles
+            document.getElementById('article1').style.display = 'none';
+            document.getElementById('article2').style.display = 'none';
+    
+            // Show the selected article
+            document.getElementById(articleId).style.display = 'block';
+        }
+    
+        function showConfirmationPopup(articleId, verificationStatus) {
+            document.getElementById('confirmationPopup').style.display = 'block';
+            document.getElementById('confirmationPopup').dataset.articleId = articleId;
+            document.getElementById('confirmationPopup').dataset.verificationStatus = verificationStatus;
+    
+            // Update the verification action in the popup
+            document.getElementById('verificationAction').innerText = verificationStatus.charAt(0).toUpperCase() + verificationStatus.slice(1);
+        }
+    
+        function confirmVerification() {
+            var articleId = document.getElementById('confirmationPopup').dataset.articleId;
+            var verificationStatus = document.getElementById('confirmationPopup').dataset.verificationStatus;
+    
+            // Close the popup
+            document.getElementById('confirmationPopup').style.display = 'none';
+    
+            // Update the article status
+            updateVerificationStatus(articleId, verificationStatus);
+    
+            // Update the percentage, total users, and ticker
+            updatePercentageAndTicker(articleId);
+        }
+    
+        function cancelVerification() {
+            // Close the popup
+            document.getElementById('confirmationPopup').style.display = 'none';
+        }
+    
+        function updateVerificationStatus(articleId, status) {
+            var userName = document.getElementById('userName' + articleId.slice(-1)).value;
+            var verifiedUsers = new Set();
+    
+            // Add the user for both verification statuses
+            verifiedUsers.add(userName);
+    
+            var totalCount = verifiedUsers.size;
+    
+            var percentageElement = document.getElementById('verificationPercentage' + articleId.slice(-1));
+            var totalUsersElement = document.getElementById('totalUsers' + articleId.slice(-1));
+            var statusElement = document.getElementById(articleId).querySelector('p span');
+    
+            statusElement.innerText = status.charAt(0).toUpperCase() + status.slice(1);
+    
+            if (status === 'verified') {
+                percentageElement.innerText = calculatePercentage(totalCount, totalCount);
+            }
+    
+            totalUsersElement.innerText = totalCount;
+    
+            // Update the ticker based on the verification status
+            if (status === 'verified' && parseFloat(percentageElement.innerText) >= 75) {
+                updateTicker(articleId, 'green');
+            } else {
+                updateTicker(articleId, 'red');
+            }
+        }
+    
+        function calculatePercentage(verifiedCount, totalCount) {
+            var percentage = (verifiedCount / totalCount) * 100;
+            return percentage.toFixed(2) + '%';
+        }
+    
+        function updatePercentageAndTicker(articleId) {
+            var percentage = parseFloat(document.getElementById('verificationPercentage' + articleId.slice(-1)).innerText);
+    
+            // Assuming 75% threshold for turning the ticker green
+            if (percentage >= 75) {
+                updateTicker(articleId, 'green');
+            } else {
+                updateTicker(articleId, 'red');
+            }
+        }
+    
+        function updateTicker(articleId, color) {
+            var ticker = document.getElementById('newsTicker' + articleId.slice(-1));
+            ticker.innerHTML = 'News Ticker: Article ' + (color === 'green' ? 'Verified!' : 'Unverified!');
+            ticker.className = 'news-ticker ' + (color === 'green' ? 'green-ticker' : 'red-ticker');
+            ticker.style.display = 'block';
+        }
+    </script>
+    
+    </body>
+    </html>
